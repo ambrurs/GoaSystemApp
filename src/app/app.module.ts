@@ -2,13 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import {AppRoutingModule } from './app-routing.component';
+import { ReporteUnoComponent } from './components/reporte-uno/reporte-uno.component';
+import { ReporteDosComponent } from './components/reporte-dos/reporte-dos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    ReporteUnoComponent,
+    ReporteDosComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

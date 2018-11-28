@@ -1,0 +1,28 @@
+
+.cardG{
+   display: inline-block;
+   margin-left: 50px;
+   margin-top: 100px; 
+   
+}
+
+.card-content {
+    height: inherit;
+    margin: auto;
+    text-align: center;
+}
+
+.card{
+    cursor: pointer;
+    margin-top: 200px;
+}
+
+.card:hover div{
+    background: white;
+    color: #343a40;
+    border-color: #343a40;
+}
+
+.card-visible{
+    display: none;
+}
