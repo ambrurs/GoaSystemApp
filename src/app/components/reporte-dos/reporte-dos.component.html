@@ -1,3 +1,51 @@
-<p>
-  reporte-dos works!
-</p>
+<h1 class="text-center">Informe Dos</h1>
+<hr>
+<div class="py-2 px-5 text-center">
+    <div class="row">
+        <div class="col">
+            <div class="form-inline">
+                <label for="selectCuadrado" class="col-2 col-form-label">Codigó Cuadrado</label>
+                <div class="col ">
+                    <select id="selectCuadrado" class="form-control" [(ngModel)]="idCodigoCuadrado">
+                      <option *ngFor="let codigoC of codigoCuadrado" [value]="codigoC.codigoCuadrado" >
+                          {{codigoC.codigoCuadrado}}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-inline">
+                <label for="chckCoche" class="col-2 col-form-label">¿Coche Lógico?</label>
+                <div class="form-inline">
+                    <select class="custom-select" multiple [(ngModel)]="idsParadas">
+                        <option *ngFor="let parada of paradas" [value]="parada.idParada" >
+                           {{parada.descripcion}}</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-danger my-5 btn-lg " [routerLink]="['/home']">Regresar</button>
+
+    <button type="button" class="btn btn-primary my-5 btn-lg mx-5" (click)="generarInforme()">Buscar</button>
+
+</div>
+
+<table *ngIf=" informeDos != null && informeDos.length > 0" class="table table-striped my-2 text-center">
+    <thead>
+        <tr>
+            <td>Coche Logico</td>
+            <td>Distancia Comercial Recorrida</td>
+            <td>Distancia Vacia Recorrida</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let informe of informeDos">
+            <td>{{informe.cocheLogico}}</td>
+            <td>{{informe.kmsComercial}}</td>
+            <td>{{informe.kmsVacio}}</td>
+        </tr>
+    </tbody>
+</table>

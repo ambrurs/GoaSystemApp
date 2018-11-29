@@ -1,24 +1,98 @@
-<h1>Informe Uno</h1>
+<h1 class="text-center">Informe Uno</h1>
 <hr>
 <div class="py-2 px-5 text-center">
-   <div class="row">
-     <div class="col">
-        <div class="form-inline">
-            <label for="inputPassword" class="col-2 col-form-label">Password</label>
-            <div class="col">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    <div class="row">
+        <div class="col">
+            <div class="form-inline">
+                <label for="selectCuadrado" class="col-2 col-form-label">Codigó Cuadrado</label>
+                <div class="col ">
+                    <select id="selectCuadrado" class="form-control" [(ngModel)]="idCodigoCuadrado">
+                      <option *ngFor="let codigoC of codigoCuadrado" [value]="codigoC.codigoCuadrado" > 
+                          {{codigoC.codigoCuadrado}} 
+                      </option>
+                    </select>
+                </div>
             </div>
-        </div>    
-     </div>
-     <div class="col">
-        <div class="form-inline">
-            <label for="inputPassword" class="col-2 col-form-label">Password</label>
-            <div class="col">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+        <div class="col">
+            <div class="form-inline">
+                <label for="chckCoche" class="col-2 col-form-label">¿Coche Lógico?</label>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" id="gridCheckS" [(ngModel)]="isCocheLogico" [value]="true">
+                    <label class="form-check-label" for="gridCheck">
+                    Si
+                  </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" id="gridCheckN" [(ngModel)]="isCocheLogico" [value]="false">
+                    <label class="form-check-label" for="gridCheck">
+                    No
+                  </label>
+                </div>
             </div>
-        </div>           
-     </div>
-   </div>
-    
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isCocheLogico">
+        <div class="col">
+            <div class="form-inline">
+                <label for="selectCoche" class="col-2 col-form-label">Codigó Coche</label>
+                <div class="col">
+                    <select id="selectCoche" class="form-control" [(ngModel)]="idCocheLogico">
+                        <option *ngFor="let cocheL of cochesLogicos" [value]="cocheL.cocheLogico" >
+                            {{cocheL.cocheLogico}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+    <button class="btn btn-danger btn-lg mx-2" [routerLink]="['/home']"> Regresar </button>
+    <button type="button" class="btn btn-primary my-lg-4 btn-lg mx-2" (click)="findInformeUno()">
+        Buscar
+    </button>
 
 </div>
+
+<table *ngIf="informeUno.length > 0" class="table table-striped my-2 text-center">
+    <thead>
+        <tr>
+            <th scope="col">Paradas / Tiempo</th>
+            <th scope="col">Duración Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let informe of informeUno">
+            <td>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Coche Logico</td>
+                            <td>Parada Origen</td>
+                            <td>Parada Destino</td>
+                            <td>Hora Inicio</td>
+                            <td>Hora Fin</td>
+                            <td>Duración</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dto of informe.informeUnoDto">
+                            <td>{{dto.cocheLogico}}</td>
+                            <td>{{dto.paradaOrigen}}</td>
+                            <td>{{dto.paradaDestino}}</td>
+                            <td>{{dto.horaInicio}}</td>
+                            <td>{{dto.horaFin}}</td>
+                            <td>{{dto.duracion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td class="text-center">
+                <h5 class="my-lg-2"><b>{{informe.duracionTotal}}</b></h5>
+            </td>
+        </tr>
+    </tbody>
+</table>
